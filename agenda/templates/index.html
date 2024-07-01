@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <header class="site-header">
+        <a href="https://www.mific.gob.ni"></a>
+        <img src="banner.svg" alt="imagen banner">
+        <link rel="stylesheet" href="banner.css">
+    </header>
+    <h1>Directorio</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar...">
+    </div>
+
+    <table id="resultTable">
+        <thead>
+            <!-- <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Oficina</th>
+            </tr> -->
+        </thead>
+        <tbody>
+            <!-- Los datos del CSV se mostrarán aquí -->
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevPage" disabled>Anterior</button>
+        <button id="nextPage" disabled>Siguiente</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const resultTable = document.getElementById('resultTable').getElementsByTagName('tbody')[0];
+            const prevPageButton = document.getElementById('prevPage');
+            const nextPageButton = document.getElementById('nextPage');
+            const paginationContainer = document.querySelector('.pagination'); // Obtén el contenedor de paginación
+            let currentPage = 1;
+            let totalPages = 1;
+            let filteredData = [];
+
+            searchInput.addEventListener('input', loadCSV);
+
+            function loadCSV() {
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm.trim() !== "") { // Verifica si hay un término de búsqueda
+                    fetch('/data') // Ajusta esta ruta según tu servidor backend
+                        .then(response => response.json())
+                        .then(data => {
+                            filteredData = data.filter(row => row.some(col => col.toLowerCase().includes(searchTerm)));
+                            totalPages = Math.ceil(filteredData.length / 4);
+                            updateTable();
+                            updatePagination();
+                            prevPageButton.disabled = false; // Habilita los botones
+                            nextPageButton.disabled = false;
+                            paginationContainer.style.display = 'flex'; // Muestra la paginación
+                        })
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    // Si no hay término de búsqueda, limpia la tabla y desactiva los botones
+                    resultTable.innerHTML = '';
+                    prevPageButton.disabled = true;
+                    nextPageButton.disabled = true;
+                    paginationContainer.style.display = 'none'; // Oculta la paginación
+                }
+            }
+
+            function updateTable() {
+                resultTable.innerHTML = ''; // Limpiar la tabla
+
+                const startIndex = (currentPage - 1) * 4;
+                const endIndex = startIndex + 4;
+
+                for (let i = startIndex; i < endIndex && i < filteredData.length; i++) {
+                    const row = filteredData[i];
+                    const tr = document.createElement('tr');
+
+                    row.forEach(col => {
+                        const td = document.createElement('td');
+                        td.textContent = col;
+                        tr.appendChild(td);
+                    });
+
+                    resultTable.appendChild(tr);
+                }
+            }
+
+            function updatePagination() {
+                prevPageButton.disabled = currentPage === 1;
+                nextPageButton.disabled = currentPage === totalPages;
+            }
+
+            prevPageButton.addEventListener('click', () => {
+                currentPage--;
+                updateTable();
+                updatePagination();
+            });
+
+            nextPageButton.addEventListener('click', () => {
+                currentPage++;
+                updateTable();
+                updatePagination();
+            });
+        });
+    </script>
+</body>
+</html>

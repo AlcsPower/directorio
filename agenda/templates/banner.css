@@ -1,0 +1,28 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo para el encabezado */
+.site-header {
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  text-align: center;
+  background-color: #ffffff; /* Cambia esto al color de fondo deseado */
+}
+
+.site-header a {
+  display: block; /* Para que el enlace ocupe todo el espacio del encabezado */
+}
+
+/* Estilo para la imagen dentro del encabezado */
+.site-header img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 -10px 0 -10px; /* Centra la imagen horizontalmente */
+}
