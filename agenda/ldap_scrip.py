@@ -4,8 +4,8 @@ import ldap3
 # Configuración de conexión a Active Directory
 server = 'ldap://172.16.8.32'
 base_dn = 'dc=mific,dc=gob,dc=ni'
-user = 'CN=Administrator,CN=Users,DC=mific,DC=gob,DC=ni'  # Nombre de usuario simple
-password = 'N1cal2bre'
+user = 'CN=,DC=gob,DC=ni'  # Nombre de usuario simple
+password = 'pass'
 
 # Atributos a recuperar
 attributes = ['displayName', 'telephoneNumber', 'physicalDeliveryOfficeName']
