@@ -13,6 +13,7 @@ body, html {
   z-index: 100;
   text-align: center;
   background-color: #ffffff; /* Cambia esto al color de fondo deseado */
+  
 }
 
 .site-header a {
@@ -24,5 +25,7 @@ body, html {
   width: 100%;
   height: auto;
   display: block;
-  margin: 0 -10px 0 -10px; /* Centra la imagen horizontalmente */
+  margin: 10 -15px 0 -10px; /* Centra la imagen horizontalmente */
+  scale: 1.01;
+  
 }

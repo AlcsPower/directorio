@@ -3,20 +3,20 @@ body {
     font-family: 'Roboto', sans-serif; /* Fuente moderna */
     background-color: #ffffff; /* Fondo blanco */
     color: #000000; /* Texto negro */
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra el contenido horizontalmente */
     justify-content: center; /* Centra el contenido verticalmente */
-    margin-top: -85px; /* Ajusta este valor para mover el contenido hacia arriba */
+    /*margin-top: -20px; /* Ajusta este valor para mover el contenido hacia arriba */
     min-height: 75vh; /* Asegura una altura mínima */
 }
 
 /* Estilo para el título */
 h1 {
     color: #020a4e; /* Color del título */
-    margin-bottom: 55px; /* Espacio debajo del título */
+    margin-bottom: 25px; /* Espacio debajo del título */
     font-size: 3.5rem; /* Tamaño de fuente grande */
 }
 
@@ -46,6 +46,8 @@ input[type="text"]:focus {
 
 /* Estilo para la tabla */
 table {
+    position: absolute;
+    top: 440px;
     width: 100%;
     border-collapse: collapse;
     border-radius: 8px; /* Bordes redondeados */
@@ -75,7 +77,9 @@ tbody tr:hover {
 .pagination {
     display: none; /* Oculta la paginación por defecto */
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    position: absolute;
+    top: 640px;
 }
 
 .pagination button {
