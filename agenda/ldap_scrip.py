@@ -2,8 +2,8 @@ import csv
 import ldap3
 
 # Configuración de conexión a Active Directory
-server = 'ldap://172.16.8.32'
-base_dn = 'dc=mific,dc=gob,dc=ni'
+server = 'ldap://172.1.1.1'
+base_dn = 'dc=++,dc=++,dc=ni'
 user = 'CN=,DC=gob,DC=ni'  # Nombre de usuario simple
 password = 'pass'
 
